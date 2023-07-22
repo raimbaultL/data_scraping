@@ -80,7 +80,7 @@ class DTM:
         return les_url
     
     def queryScore(self,requete,N=10):
-        ## ca
+        
         if(N<0):
             return "Vous avez saisi {}, mais N doit être positif".format(N)
         else:
@@ -159,25 +159,19 @@ monDTM=DTM(doc,mots_vides)
 
 #La méthode queryScore : on rentre une requête avec des mots des articles
 #On ajoute un score qui est la somme des scores tf idf 
-#Je choisis de garder tous les documets dont certains ont des scores à 0 
-#Pour que lorsqu'on affiche 12 docs alors qu'il y en a que 2 les 10 derniers ont un score de 0
-#De plus cela permet aussi d'afficher les documents qui ont un sur les 2 mots 
-#Mais des articles qui ont 1 sur les 2 mots peuvent avoir un plus grand score que ceux qui ont vraiment les 2 mots 
-#Si l'on veut que le score soit afficher seulement pour les articles qui répondent à la requête en entier on utilise
-# la ligne de code du if (ligne 96 )
 
 print(monDTM.queryScore("arctic",22))
 print(monDTM.queryScore("dams"))
 print(monDTM.queryScore("powerful stop",6))
 print(monDTM.queryScore("canada rain",12))
 print(monDTM.queryScore(" hydro corporation judged ",3))
+
 ## les entrées incohérentes
 print(monDTM.queryScore("the in is ",3))
 print(monDTM.queryScore("",3))
 print(monDTM.queryScore("hydro corporation judged",-3))
 
 #test méthode wordcloud
-#
 
 print(monDTM.wordCloud(0))
 print(monDTM.wordCloud(7))
@@ -192,6 +186,7 @@ print(monDTM.nMostSimilar(4,10)) #les 10 premiers documents qui ressemblent le p
 print(monDTM.nMostSimilar(3,5))
 print(monDTM.nMostSimilar(1))
 print(monDTM.nMostSimilar(1,0))
+
 ## les entrées incohérentes
 print(monDTM.nMostSimilar(1,-2))
 print(monDTM.nMostSimilar(56,13))
