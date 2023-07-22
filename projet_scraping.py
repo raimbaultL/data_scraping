@@ -17,7 +17,7 @@ import os
 import numpy
 urlopen("http://www.google.fr")
 
-os.chdir("C:/Users/lucie/OneDrive/Documents/Cours/MASTER 1 MAS/S2/PYTHON/projet")
+#os.chdir("C:/Users/lucie/OneDrive/Documents/Cours/MASTER 1 MAS/S2/PYTHON/projet")
 
 
 # Définition des fonctions
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     bsObj = BeautifulSoup(html, "lxml") 
     
     nb_doc=int(bsObj.find("div",class_="search-results-counter text-xsmall uppercase").string.split()[3]) 
-    ##Je réccupère le nombre de documents, ensuit on le divisera par 20 pour savoir le nombre de pages à tourner.
+    ##Je réccupère le nombre de documents, ensuite on le divisera par 20 pour savoir le nombre de pages à tourner.
     doc_page=bsObj.find("div",class_="search-results-counter text-xsmall uppercase").string.split()[1]
     pos1=bsObj.find("div",class_="search-results-counter text-xsmall uppercase").string.split()[1].find('-')
     nb_doc_page=int(doc_page[pos1+1:])
@@ -102,23 +102,12 @@ if __name__ == '__main__':
         
     
     #Test de parseurl
-    parseURL("https://thecanadianencyclopedia.ca/en/article/wetlands")
+    #parseURL("https://thecanadianencyclopedia.ca/en/article/wetlands")
     
     
     
     ##Stocker les urls dans un fichier pick
-    #texte=[]
-    #for i in listeurl:
-    #    texte.append(parseURL(i))
-        
-    #with open('hydrology.pick', 'wb') as pickFile:
-    #    pickle.dump(texte, pickFile)
-        
     
-    
-    #SUR mon ordinateur cette partie ne marche pas (même sur la correction des tds), 
-    #j'ai donc fait une boucle for pour stocker tous les textes
-    #Finalement cela a marché sur VScode je laisse les 2
     res = []
     with Pool(cpu_count()-1) as p :
         res = p.map(parseURL,listeurl)
